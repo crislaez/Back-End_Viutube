@@ -1,4 +1,4 @@
-## (front-end) ViuTube
+## (back-end) ViuTube
 
 ViuTube es una red social de subir videos (clon de youtube) 
 
