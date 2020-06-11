@@ -42,12 +42,23 @@ function endPointUsuarios(router){
 
         Database.login(user, (err, data) => {
             if(err) return res.status(500).json({message:`Error al realizar la peticion: ${err}`});
-            if(!data) return res.status(404).json({message:`Error al ingresar usuario`});
+            if(!data) return res.status(404).json({message:`Error al devolver el usuario usuario`});
 
-            res.status(200).json({success:true, data:data})
+            res.status(200).json({success:true, data:data});
         })
     });
 
+    //usuario por id ruta -> http://localhost:3001/api/getUserById/:id
+    router.get('/getUserById/:id',(req, res) => {
+        let id = req.params.id;
+
+        Database.getUserById(id, (err, data) => {
+            if(err) return res.status(500).json({message:`Error al realizar la peticion: ${err}`});
+            if(!data) return res.status(404).json({message:`Error al ingresar usuario`});
+
+            res.status(200).json({success:true, data:data});
+        })
+    });
 }
 
 module.exports = endPointUsuarios;
