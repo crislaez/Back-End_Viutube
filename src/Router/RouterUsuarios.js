@@ -1,5 +1,7 @@
 'use strict';
 
+require('dotenv').config();
+
 const multipart = require('connect-multiparty');
 const multipartMiddleware = multipart({uploadDir: __dirname + '/../Video'}) /// ./Video es pa carpeta donde se subira la foto
 
@@ -18,8 +20,8 @@ function endPointUsuarios(router){
                 nombre_completo:req.body.nombre_completo,
                 nombre_usuario:req.body.nombre_usuario,
                 fecha:req.body.fecha,
-                avatar:'http://localhost:3001/Video/'+aux[8],
-                banner:'http://localhost:3001/Video/'+aux2[8],
+                avatar:process.env.RUTA+'/Video/'+aux[8],
+                banner:process.env.RUTA+'/Video/'+aux2[8],
                 correo:req.body.correo,
                 clave:req.body.clave,
             };
