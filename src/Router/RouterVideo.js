@@ -4,13 +4,14 @@ require('dotenv').config();
 
 const multipart = require('connect-multiparty');
 const multipartMiddleware = multipart({uploadDir: __dirname + '/../Video'}) /// ./Video es pa carpeta donde se subira la foto
-
+const authFunction = require('../Middleware/AuthToken');
 const Database = require('../Database/queryVideos');
 
 function endPointVideo(router){
 
+    //authFunction el validador del token
     //crear videos ruta -> http://localhost:3001/api/addVideo
-    router.post('/addVideo',multipartMiddleware, (req, res) => {
+    router.post('/addVideo',authFunction, multipartMiddleware, (req, res) => {
         let aux = req.files.video.path.split('\\');
         
         let video = 

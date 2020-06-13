@@ -1,6 +1,7 @@
 'use strict';
 
 require('dotenv').config();
+const jwt = require('jsonwebtoken');
 
 const multipart = require('connect-multiparty');
 const multipartMiddleware = multipart({uploadDir: __dirname + '/../Video'}) /// ./Video es pa carpeta donde se subira la foto
@@ -45,8 +46,10 @@ function endPointUsuarios(router){
         Database.login(user, (err, data) => {
             if(err) return res.status(500).json({message:`Error al realizar la peticion: ${err}`});
             if(!data) return res.status(404).json({message:`Error al devolver el usuario usuario`});
-
-            res.status(200).json({success:true, data:data});
+            //creamos un token
+            const viutubeToken = jwt.sign({id:user.correo}, process.env.SECRET_TOKEN,{expiresIn: 60 * 60 * 24})
+            
+            res.status(200).json({success:true, data:data, viutubeToken:viutubeToken});
         })
     });
 

@@ -5,7 +5,8 @@ require('dotenv').config();
 const express = require('express');
 
 const endPointUsuarios = require('./Router/RouterUsuarios');
-const endPointVideo = require('./Router/RouterVideo')
+const endPointVideo = require('./Router/RouterVideo');
+const endPointComentarios = require('./Router/RouterCoemtarios');
 
 const router = express.Router();
 
@@ -30,5 +31,6 @@ app.use('/api',router);
 //endpoint para los usuarios
 endPointUsuarios(router);
 endPointVideo(router);
+endPointComentarios(router);
 
 app.listen(process.env.PORT, () => console.log(`Api rest corriendo en :${process.env.URL}`));
