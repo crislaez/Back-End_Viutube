@@ -66,6 +66,18 @@ function endPointVideo(router){
             res.status(200).json({success:true, data:data})
         })
     });
+
+    //10 videos ruta -> http://localhost:3001/api/get10Video
+    router.get('/get10Video', (req, res) => {
+
+        Database.get10Video((err, data) => {
+            if(err) return res.status(500).json({message:`Error al realizar la peticion: ${err}`});
+            if(!res) return res.status(404).json({message:`Error al mostrar los video`});
+
+            res.status(200).json({success:true, data:data})
+        })
+    });
+    
 }
 
 module.exports = endPointVideo;

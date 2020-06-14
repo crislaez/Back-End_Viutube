@@ -66,10 +66,27 @@ const getAllVideo = (callback) => {
     // conexion.end();
 }
 
+//mostrar 10 videos para el AsideLeft
+const get10Video = (callback) => {
+    // conexion.connect();
+    if(conexion){
+        conexion.query(`SELECT videos.id_video, videos.id_usuario, videos.titulo_video, videos.descripcion_video, videos.video,videos.fecha_video, usuarios.nombre_usuario, usuarios.avatar FROM videos INNER JOIN usuarios ON videos.id_usuario = usuarios.id_usuario LIMIT 10`, (err, res) => {
+            if(err){
+                console.log(err.code);
+                callback(err, res);
+            }else{
+                callback(null, res);
+            }
+        })
+    }
+    // conexion.end();
+}
+
 module.exports = 
     {
         addVideo,
         getVideosByIdUser,
         getVideoByIdVideo,
-        getAllVideo
+        getAllVideo,
+        get10Video
     }
