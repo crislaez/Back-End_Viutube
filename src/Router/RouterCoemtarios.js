@@ -20,6 +20,9 @@ function endPointComentarios(router){
             }
 
         Database.addComent(coment, (err, data) => {
+            if(err) return res.status(500).json({message:`Error al realizar la peticion: ${err}`});
+            if(!res) return res.status(404).json({message:`Error al ingresar el comentario`});
+
             res.status(200).json({success:true, data:data});
         })
     });
@@ -29,6 +32,9 @@ function endPointComentarios(router){
         let id = req.params.id;
 
         Database.getAllComentByIdVideo(id, (err, data) => {
+            if(err) return res.status(500).json({message:`Error al realizar la peticion: ${err}`});
+            if(!data) return res.status(404).json({message:`Error al recuperar los comentarios`});
+
             res.status(200).json({success:true, data:data})
         })
     });

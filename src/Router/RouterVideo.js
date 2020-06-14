@@ -25,6 +25,9 @@ function endPointVideo(router){
             }
 
         Database.addVideo(video, (err, data) => {
+            if(err) return res.status(500).json({message:`Error al realizar la peticion: ${err}`});
+            if(!res) return res.status(404).json({message:`Error al ingresar el video`});
+
             res.status(200).json({success:true, data:data})
         })
     });
@@ -34,6 +37,9 @@ function endPointVideo(router){
         let id = req.params.id;
 
         Database.getVideosByIdUser(id, (err, data) => {
+            if(err) return res.status(500).json({message:`Error al realizar la peticion: ${err}`});
+            if(!res) return res.status(404).json({message:`Error al mostrar los video`});
+
             res.status(200).json({success:true, data:data});
         })
     });
@@ -43,6 +49,9 @@ function endPointVideo(router){
         let id = req.params.id;
 
         Database.getVideoByIdVideo(id, (err, data) => {
+            if(err) return res.status(500).json({message:`Error al realizar la peticion: ${err}`});
+            if(!res) return res.status(404).json({message:`Error al mostrar los video`});
+            
             res.status(200).json({success:true, data:data});
         })
     });
@@ -51,6 +60,9 @@ function endPointVideo(router){
     router.get('/getAllVideo', (req, res) => {
         
         Database.getAllVideo((err, data) => {
+            if(err) return res.status(500).json({message:`Error al realizar la peticion: ${err}`});
+            if(!res) return res.status(404).json({message:`Error al mostrar los video`});
+
             res.status(200).json({success:true, data:data})
         })
     });

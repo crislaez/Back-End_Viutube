@@ -8,10 +8,8 @@ const addUser = (user, callback) => {
     if(conexion){
         conexion.query(`INSERT INTO usuarios SET ?`, user, (err, res) => {
             if(err){
-                console.log(err.code);
-                if(err) return res.status(500).json({message:`Error al realizar la peticion: ${err}`});
-                if(!data) return res.status(404).json({message:`Error al ingresar usuario`});
-
+                console.log(err.code);               
+                callback(err, res);
             }else{
                 callback(null, res);
             }
@@ -26,10 +24,8 @@ const login = (user, callback) => {
     if(conexion){
         conexion.query(`SELECT * FROM usuarios WHERE correo = ${conexion.escape(user.correo)} AND clave = ${conexion.escape(user.clave)}`, (err, res) => {
             if(err){
-                console.log(err.code);
-                if(err) return res.status(500).json({message:`Error al realizar la peticion: ${err}`});
-                if(!data) return res.status(404).json({message:`Error al devolver el usuario usuario`});
-           
+                console.log(err.code);                
+                callback(err, res);
             }else{
                 callback(null, res);
             }
@@ -44,9 +40,8 @@ const getUserById = (id, callback) => {
     if(conexion){
         conexion.query(`SELECT id_usuario, nombre_completo, nombre_usuario, avatar, banner, correo  FROM usuarios WHERE id_usuario = ${conexion.escape(id)}`,(err, res) => {
             if(err){
-                console.log(err.code);
-                if(err) return res.status(500).json({message:`Error al realizar la peticion: ${err}`});
-                if(!res) return res.status(404).json({message:`Error al ingresar usuario`});
+                console.log(err.code);               
+                callback(err, res);
             }else{
                 callback(null, res);
             }

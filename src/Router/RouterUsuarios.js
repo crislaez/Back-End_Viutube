@@ -27,7 +27,10 @@ function endPointUsuarios(router){
                 clave:req.body.clave,
             };
            
-        Database.addUser(user, (err, data) => {            
+        Database.addUser(user, (err, data) => {    
+            if(err) return res.status(500).json({message:`Error al realizar la peticion: ${err}`});
+            if(!data) return res.status(404).json({message:`Error al ingresar usuario`});
+
             res.status(200).json({success:true, data:data});
         })
     });
@@ -40,8 +43,10 @@ function endPointUsuarios(router){
                 clave:req.body.clave
             }
 
-        Database.login(user, (err, data) => {
-             //creamos un token
+        Database.login(user, (err, data) => {             
+            if(err) return res.status(500).json({message:`Error al realizar la peticion: ${err}`});
+            if(!data) return res.status(404).json({message:`Error al loguear`});
+            //creamos un token
             const viutubeToken = jwt.sign({id:user.correo}, process.env.SECRET_TOKEN,{expiresIn: 60 * 60 * 24})
             res.status(200).json({success:true, data:data, viutubeToken:viutubeToken});
         })
@@ -52,6 +57,9 @@ function endPointUsuarios(router){
         let id = req.params.id;
 
         Database.getUserById(id, (err, data) => {
+            if(err) return res.status(500).json({message:`Error al realizar la peticion: ${err}`});
+            if(!res) return res.status(404).json({message:`Error al mostrar el usuario`});
+
             res.status(200).json({success:true, data:data});
         })
     });
