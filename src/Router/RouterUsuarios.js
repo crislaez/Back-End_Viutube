@@ -58,7 +58,7 @@ function endPointUsuarios(router){
 
         Database.getUserById(id, (err, data) => {
             if(err) return res.status(500).json({message:`Error al realizar la peticion: ${err}`});
-            if(!res) return res.status(404).json({message:`Error al mostrar el usuario`});
+            if(!data) return res.status(404).json({message:`Error al mostrar el usuario`});
 
             res.status(200).json({success:true, data:data});
         })

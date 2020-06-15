@@ -26,7 +26,7 @@ function endPointVideo(router){
 
         Database.addVideo(video, (err, data) => {
             if(err) return res.status(500).json({message:`Error al realizar la peticion: ${err}`});
-            if(!res) return res.status(404).json({message:`Error al ingresar el video`});
+            if(!data) return res.status(404).json({message:`Error al ingresar el video`});
 
             res.status(200).json({success:true, data:data})
         })
@@ -38,7 +38,7 @@ function endPointVideo(router){
 
         Database.getVideosByIdUser(id, (err, data) => {
             if(err) return res.status(500).json({message:`Error al realizar la peticion: ${err}`});
-            if(!res) return res.status(404).json({message:`Error al mostrar los video`});
+            if(!data) return res.status(404).json({message:`Error al mostrar los video`});
 
             res.status(200).json({success:true, data:data});
         })
@@ -50,7 +50,7 @@ function endPointVideo(router){
 
         Database.getVideoByIdVideo(id, (err, data) => {
             if(err) return res.status(500).json({message:`Error al realizar la peticion: ${err}`});
-            if(!res) return res.status(404).json({message:`Error al mostrar los video`});
+            if(!data) return res.status(404).json({message:`Error al mostrar los video`});
             
             res.status(200).json({success:true, data:data});
         })
@@ -61,7 +61,7 @@ function endPointVideo(router){
         
         Database.getAllVideo((err, data) => {
             if(err) return res.status(500).json({message:`Error al realizar la peticion: ${err}`});
-            if(!res) return res.status(404).json({message:`Error al mostrar los video`});
+            if(!data) return res.status(404).json({message:`Error al mostrar los video`});
 
             res.status(200).json({success:true, data:data})
         })
@@ -72,7 +72,7 @@ function endPointVideo(router){
 
         Database.get10Video((err, data) => {
             if(err) return res.status(500).json({message:`Error al realizar la peticion: ${err}`});
-            if(!res) return res.status(404).json({message:`Error al mostrar los video`});
+            if(!data) return res.status(404).json({message:`Error al mostrar los video`});
 
             res.status(200).json({success:true, data:data})
         })
