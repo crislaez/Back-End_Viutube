@@ -9,6 +9,7 @@ const endPointVideo = require('./Router/RouterVideo');
 const endPointComentarios = require('./Router/RouterCoemtarios');
 const endPointFollow = require('./Router/RouterSeguir')
 const endPointMeGusta = require('./Router/RouterMegusta');
+const endPopintNomegusta = require('./Router/RouterNomeguista');
 
 const router = express.Router();
 
@@ -36,5 +37,6 @@ endPointVideo(router);
 endPointComentarios(router);
 endPointFollow(router);
 endPointMeGusta(router);
+endPopintNomegusta(router);
 
 app.listen(process.env.PORT, () => console.log(`Api rest corriendo en :${process.env.URL}`));

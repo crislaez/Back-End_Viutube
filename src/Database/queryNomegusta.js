@@ -2,11 +2,11 @@
 
 const conexion = require('./Conection');
 
-//dar like a un video
-const addLike = (like, callback) => {
+//dar nomegusta
+const addDislike = (dislike, callback) => {
     // conexion.connect();
     if(conexion){
-        conexion.query(`INSERT INTO megusta SET ?`, like, (err, res) => {
+        conexion.query(`INSERT INTO nomegusta SET ? `,dislike, (err, res) => {
             if(err){
                 console.log(err.code);
                 callback(err, res);
@@ -18,11 +18,11 @@ const addLike = (like, callback) => {
     // conexion.end();
 }
 
-//quitar like
-const removeLike = (like, callback) => {
+//quitar dislike
+const removeDislike = (dislike, callback) => {
     // conexion.connect();
     if(conexion){
-        conexion.query(`DELETE FROM megusta WHERE id_usuario = ${conexion.escape(like.id_usuario)} AND id_video = ${conexion.escape(like.id_video)}`, (err, res) => {
+        conexion.query(`DELETE FROM nomegusta WHERE id_usuario = ${conexion.escape(dislike.id_usuario)} AND id_video = ${conexion.escape(dislike.id_video)}`, (err, res) => {
             if(err){
                 console.log(err.code);
                 callback(err, res);
@@ -34,11 +34,11 @@ const removeLike = (like, callback) => {
     // conexion.end();
 }
 
-//comprobar like
-const checkLike = (like, callback) => {
+//comprobar dislike
+const checkDislike = (dislike, callback) => {
     // conexion.connect();
     if(conexion){
-        conexion.query(`SELECT * FROM megusta WHERE id_usuario = ${conexion.escape(like.id_usuario)} AND id_video = ${conexion.escape(like.id_video)}`, (err, res) => {
+        conexion.query(`SELECT * FROM nomegusta WHERE id_usuario = ${conexion.escape(dislike.id_usuario)} AND id_video = ${conexion.escape(dislike.id_video)}`, (err, res) => {
             if(err){
                 console.log(err.code);
                 callback(err, res);
@@ -50,11 +50,11 @@ const checkLike = (like, callback) => {
     // conexion.end();
 }
 
-//cantidad de like por video
-const countLikeByIdVideo = (id,callback) => {
+//contar dislike
+const countDislikeByIdVideo = (id, callback) => {
     // conexion.connect();
     if(conexion){
-        conexion.query(`SELECT COUNT(*) AS files FROM megusta WHERE id_video = ${conexion.escape(id)}`, (err, res) => {
+        conexion.query(`SELECT COUNT(*) AS files FROM nomegusta WHERE id_video = ${conexion.escape(id)}`, (err, res) => {
             if(err){
                 console.log(err.code);
                 callback(err, res);
@@ -69,8 +69,8 @@ const countLikeByIdVideo = (id,callback) => {
 
 module.exports = 
     {
-        addLike,
-        removeLike,
-        checkLike,
-        countLikeByIdVideo
+        addDislike,
+        removeDislike,
+        checkDislike,
+        countDislikeByIdVideo
     }
