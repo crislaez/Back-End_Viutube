@@ -77,6 +77,18 @@ function endPointVideo(router){
             res.status(200).json({success:true, data:data})
         })
     });
+
+    //buscar videos por titulo ruta -> http://localhost:3001/api/getVideoByTitle/:id
+    router.get('/getVideoByTitle/:id',(req, res) => {
+        let titulo = req.params.id;
+
+        Database.getVideoByTitle(titulo, (err, data) => {
+            if(err) return req.status(500).json({message: `Error al realizar la peticion:${err}`});
+            if(!data) return res.status(404).json({message:`Error al recibir los videos`});
+
+            res.status(200).json({success:true, data:data})
+        })
+    })
     
 }
 
