@@ -50,9 +50,26 @@ const getUserById = (id, callback) => {
     // conexion.end();
 }
 
+//usuario por nombre usuario
+const getUserByUserName = (nombre, callback) => {
+    // conexion.connect();
+    if(conexion){
+        conexion.query(`SELECT id_usuario FROM usuarios WHERE nombre_usuario = ${conexion.escape(nombre)}`, (err, res) => {
+            if(err){
+                console.log(err.code);
+                callback(nnull, res);
+            }else{
+                callback(null, res)
+            }
+        })
+    }
+    // conexion.end();
+}
+
 module.exports = 
     {
         addUser,
         login,
-        getUserById
+        getUserById,
+        getUserByUserName
     }
