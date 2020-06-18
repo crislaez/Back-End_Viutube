@@ -10,6 +10,7 @@ const endPointComentarios = require('./Router/RouterCoemtarios');
 const endPointFollow = require('./Router/RouterSeguir')
 const endPointMeGusta = require('./Router/RouterMegusta');
 const endPopintNomegusta = require('./Router/RouterNomeguista');
+const endpointReproduction = require('./Router/RouterReproduccion');
 
 const router = express.Router();
 
@@ -27,8 +28,8 @@ app.use((req, res, next) => {
     res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
     res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
     next();
-});
-
+});                
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
 app.use('/api',router);
 
 //endpoint para los usuarios
@@ -38,5 +39,6 @@ endPointComentarios(router);
 endPointFollow(router);
 endPointMeGusta(router);
 endPopintNomegusta(router);
+endpointReproduction(router);
 
 app.listen(process.env.PORT, () => console.log(`Api rest corriendo en :${process.env.URL}`));
